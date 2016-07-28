@@ -1,0 +1,8 @@
+<resources>
+    <string name="app_name">PregnancyTestKitReader</string>
+    <!-- Camera Strings -->
+    <string name="capture">Capture Image</string>
+    <string name="useImage">Use Image</string>
+    <string name="getImage">Get Image</string>
+    <string name="imageDescription">Output of processed image</string>
+</resources>
