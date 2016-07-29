@@ -133,6 +133,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 		processorHelper.execute(imagePath);
 	}
 
+	//TODO: Investigate if this in class async is still needed since i am already
+	//passing an imageview -> weak reference to the async.
 	private class ProcessorHelperAsyncTask extends Processor {
 		private static final String TAG = "ProcHelperAsyncTask";
 		private ProgressDialog progressDialog;
