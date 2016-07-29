@@ -157,7 +157,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 		@Override
 		protected void onPostExecute(Bitmap bitmap) {
 			super.onPostExecute(bitmap);
-			Log.d(TAG, "onPostExecute: " + getBitmapOutput());
 			String result = (getResult() == Constants.NUMBER_OF_LINES_FOR_POSITIVE) ? "Positive" : "Negative";
 			resultTextView.setText(result);
 			progressDialog.dismiss();
