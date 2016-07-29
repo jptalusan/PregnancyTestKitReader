@@ -44,26 +44,6 @@ public class Utilities {
 		return inSampleSize;
 	}
 
-	public static Bitmap rotate(Bitmap bitmap, int degree) {
-		int w = bitmap.getWidth();
-		int h = bitmap.getHeight();
-
-		Matrix mtx = new Matrix();
-		mtx.postRotate(degree);
-
-		try {
-			Bitmap b2 = Bitmap.createBitmap(bitmap, 0, 0, w, h, mtx, true);
-			if (bitmap != b2) {
-				bitmap.recycle();
-				bitmap = b2;
-			}
-		} catch (OutOfMemoryError ex) {
-			// We have no memory to rotate. Return the original bitmap.
-		}
-
-		return bitmap;
-	}
-
 	public static Bitmap decodeSampledBitmapFromResource(String path, int reqWidth, int reqHeight) {
 		return BitmapFactory.decodeFile(path, generateResizedBitmapOptions(path, reqWidth, reqHeight));
 	}
