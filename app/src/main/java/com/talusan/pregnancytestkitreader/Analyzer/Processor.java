@@ -31,6 +31,7 @@ import java.util.ArrayList;
  */
 public class Processor extends AsyncTask<String, Void, Bitmap> {
 	private static final String TAG = "Processor";
+	private final WeakReference<ImageView> imageViewReference;
 	private Context context;
 	private SharedPreferences editor;
 	private String imagePath = "";
@@ -52,8 +53,9 @@ public class Processor extends AsyncTask<String, Void, Bitmap> {
 
 	private int result = 0;
 
-	public Processor(Context context) {
+	public Processor(Context context, ImageView imageView) {
 		this.context = context;
+		imageViewReference = new WeakReference<ImageView>(imageView);
 		editor = context.getSharedPreferences(
 				context.getResources().getString(R.string.app_name),
 				Context.MODE_PRIVATE);
@@ -145,11 +147,13 @@ public class Processor extends AsyncTask<String, Void, Bitmap> {
 
 	@Override
 	protected void onPostExecute(Bitmap b) {
+		if (null != imageViewReference && null != b) {
+			final ImageView imageView = imageViewReference.get();
+			if (null != imageView) {
+				imageView.setImageBitmap(b);
+			}
+		}
 		this.imagePath = "";
-	}
-
-	public Bitmap getBitmapOutput() {
-		return outputImage;
 	}
 
 	public int getResult() {
