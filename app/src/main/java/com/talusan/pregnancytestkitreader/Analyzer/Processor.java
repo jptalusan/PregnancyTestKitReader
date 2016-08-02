@@ -8,6 +8,7 @@ import android.os.AsyncTask;
 import android.util.Log;
 import android.view.Display;
 import android.view.WindowManager;
+import android.widget.ImageView;
 
 import com.talusan.pregnancytestkitreader.R;
 import com.talusan.pregnancytestkitreader.Utils.Constants;
@@ -24,6 +25,7 @@ import org.opencv.core.Size;
 import org.opencv.imgproc.Imgproc;
 
 import java.io.File;
+import java.lang.ref.WeakReference;
 import java.util.ArrayList;
 
 /**
@@ -31,7 +33,7 @@ import java.util.ArrayList;
  */
 public class Processor extends AsyncTask<String, Void, Bitmap> {
 	private static final String TAG = "Processor";
-	private final WeakReference<ImageView> imageViewReference;
+//	private final WeakReference<ImageView> imageViewReference;
 	private Context context;
 	private SharedPreferences editor;
 	private String imagePath = "";
@@ -53,9 +55,9 @@ public class Processor extends AsyncTask<String, Void, Bitmap> {
 
 	private int result = 0;
 
-	public Processor(Context context, ImageView imageView) {
+	public Processor(Context context) { //, ImageView imageView) {
 		this.context = context;
-		imageViewReference = new WeakReference<ImageView>(imageView);
+//		imageViewReference = new WeakReference<>(imageView);
 		editor = context.getSharedPreferences(
 				context.getResources().getString(R.string.app_name),
 				Context.MODE_PRIVATE);
@@ -147,16 +149,23 @@ public class Processor extends AsyncTask<String, Void, Bitmap> {
 
 	@Override
 	protected void onPostExecute(Bitmap b) {
-		if (null != imageViewReference && null != b) {
-			final ImageView imageView = imageViewReference.get();
-			if (null != imageView) {
-				imageView.setImageBitmap(b);
-			}
-		}
+//		if (null != imageViewReference && null != b) {
+//			final ImageView imageView = imageViewReference.get();
+//			if (null != imageView) {
+//				Log.d(TAG, "onPostExecute: imageview is not null");
+//				imageView.setImageBitmap(b);
+//			}
+//		} else {
+//			Log.d(TAG, "onPostExecute: imageview is null");
+//		}
 		this.imagePath = "";
 	}
 
 	public int getResult() {
 		return result;
+	}
+
+	public Bitmap getBitmap() {
+		return outputImage;
 	}
 }

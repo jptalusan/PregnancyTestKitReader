@@ -129,7 +129,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
 	private void processImage(String imagePath) {
 		ProcessorHelperAsyncTask processorHelper =
-				new ProcessorHelperAsyncTask(getApplicationContext(), progressDialog, outputImageView);
+				new ProcessorHelperAsyncTask(getApplicationContext(), progressDialog);// , outputImageView);
 		processorHelper.execute(imagePath);
 	}
 
@@ -139,8 +139,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 		private static final String TAG = "ProcHelperAsyncTask";
 		private ProgressDialog progressDialog;
 
-		public ProcessorHelperAsyncTask(Context context, ProgressDialog progressDialog, ImageView outputImageView) {
-			super(context, outputImageView);
+		public ProcessorHelperAsyncTask(Context context, ProgressDialog progressDialog) { //, ImageView outputImageView) {
+//			super(context, outputImageView);
+			super(context);
 			this.progressDialog = progressDialog;
 		}
 
@@ -159,6 +160,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 		@Override
 		protected void onPostExecute(Bitmap bitmap) {
 			super.onPostExecute(bitmap);
+			outputImageView.setImageBitmap(getBitmap());
 			String result = (getResult() == Constants.NUMBER_OF_LINES_FOR_POSITIVE) ? "Positive" : "Negative";
 			resultTextView.setText(result);
 			progressDialog.dismiss();
