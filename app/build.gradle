@@ -1,13 +1,13 @@
 apply plugin: 'com.android.application'
 
 android {
-    compileSdkVersion 24
-    buildToolsVersion "24.0.1"
+    compileSdkVersion 25
+    buildToolsVersion "25"
 
     defaultConfig {
         applicationId "com.talusan.pregnancytestkitreader"
         minSdkVersion 15
-        targetSdkVersion 24
+        targetSdkVersion 25
         versionCode 1
         versionName "1.0"
     }
@@ -26,4 +26,5 @@ dependencies {
     compile project(':openCVLibrary249')
     compile 'me.villani.lorenzo.android:android-cropimage:1.1.2'
     compile 'com.theartofdev.edmodo:android-image-cropper:2.2.+'
+    compile 'com.android.support.constraint:constraint-layout:1.0.0-beta1'
 }
